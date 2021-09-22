@@ -3,13 +3,14 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from uuid import uuid4
 
 class AccountsManager(BaseUserManager):
-  def create_user(self, email, password=None):
+  def create_user(self, email, username=None, password=None):
     if not email:
       raise ValueError("Email is required")
     user = self.model(
       email = self.normalize_email(email),
-      password = password
+      username = username,
     )
+    user.set_password(password)
     user.save(using=self._db)
     return user
   
@@ -34,15 +35,15 @@ def imageDefault():
 class Accounts(AbstractBaseUser):
   # required property, password and hash is built in
   email = models.EmailField(unique=True)
-  username = models.CharField()
+  username = models.CharField(max_length=50)
   date_joined = models.DateTimeField(auto_now_add=True)
   last_login = models.DateTimeField(auto_now=True)
   is_active = models.BooleanField(default=True)
-  is_admin = models.BooleanField(default=False)
+  is_admin = models.BooleanField(default=False)  
 
   profile_image = models.ImageField(null=True, blank=True, default=imageDefault, upload_to=fileUpload)
-  role = models.TextChoices('role', 'COSTUMER SUPLIER')
-
+  role = models.CharField(default="costumer", max_length=8)
+  
   objects = AccountsManager()
 
   # set login field as email
