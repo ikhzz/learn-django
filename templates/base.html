@@ -14,8 +14,12 @@
       <h2 class="title"><a href="{% url "market:index" %}">iShop</a></h2>
     </li>
     <li>
-      <span><a href="">Sign in</a></span>
-      <span><a href="">Sign up</a></span>
+      {% if request.user.is_authenticated %}
+        <span><a href="{% url "accounts:signout" %}">Sign out</a></span>  
+      {% else %}
+        <span><a href="{% url "accounts:signin" %}">Sign in</a></span>
+        <span><a href="{% url "accounts:signup" %}">Sign up</a></span>
+      {% endif %}
     </li>
   </nav>
   <div class="main">
