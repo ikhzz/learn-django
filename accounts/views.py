@@ -7,14 +7,20 @@ def signupView(request):
   return render(request, 'accounts/signup.html')
 
 def signinView(request):
+  
+  msg = ''
+  if request.method == 'POST':
+    user = authenticate(request, email=request.POST['email'], password=request.POST['password'])
+    print(user)
+    if user is not None:
+      login(request, user)
+      return redirect('market:index')
+    else:
+      msg = "email or password is not valid"
+  else:
+    form = SigninForm()
 
-  # if request.method == 'POST':
-
-  #   print('login try')
-  # else:
-  #   form = SigninForm()
-  form = SigninForm()
-  return render(request, 'accounts/signin.html', context={'form': form})
+  return render(request, 'accounts/signin.html', context={'form': form, 'msg': msg})
 
 def signoutView(request):
   logout(request)

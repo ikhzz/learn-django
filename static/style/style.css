@@ -73,3 +73,22 @@ nav li span {
 .form h1, .form input[type=submit]{
   justify-self: center;
 }
+.form input[type=submit] {
+  background-color: #407fe6;
+  padding: 5px 7px;
+  border: 2px solid #407fe6;
+  border-radius: 5px;
+}
+.form input[type=submit]:hover {
+  background-color: #8eb3f0;
+  border: 2px solid #8eb3f0;
+}
+.inputForm, .inputForm p{
+  display: grid;
+  row-gap: 10px;
+}
+.inputForm input {
+  padding: 5px 7px;
+  border: 2px solid blue;
+  border-radius: 5px;
+}
