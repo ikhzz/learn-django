@@ -10,3 +10,6 @@ class Product(models.Model):
   createdAt = models.DateTimeField(auto_now_add=True)
   updatedAt = models.DateTimeField(auto_now=True)
   suplier = models.ForeignKey(Accounts, on_delete=models.SET_DEFAULT, default=None)
+
+class Transaction(models.Model):
+  pass

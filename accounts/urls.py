@@ -5,6 +5,6 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('signup', views.signupView, name="signup"),
-    path('signin', views.signinView, name="signin"),
+    path('signin/', views.signinView, name="signin"),
     path('signout', views.signoutView, name="signout")
 ]

@@ -1,5 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
-<h1>Tess</h1>
+<ul class="market">
+  <h1>Beranda</h1>
+  {% for entry in data %}
+  <li>
+    <img src="{% static "img/download.jpeg" %}" alt="" srcset="">
+    <h3>{{ entry.name }}</h3>
+    <p>Stock: {{ entry.stock }}</p>
+    <p>Price: {{ entry.price }}</p>
+    <button>buy</button>
+  </li>
+  {% endfor %}
+</ul>
 
 {% endblock %}
