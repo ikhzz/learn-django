@@ -12,4 +12,8 @@ class Product(models.Model):
   suplier = models.ForeignKey(Accounts, on_delete=models.SET_DEFAULT, default=None)
 
 class Transaction(models.Model):
-  pass
+  amount = models.PositiveSmallIntegerField()
+  total = models.PositiveIntegerField()
+  createdAt = models.DateTimeField(auto_now_add=True)
+  product_id = models.ForeignKey(Product, on_delete=models.SET_DEFAULT, default=None)
+  costumer_id = models.ForeignKey(Accounts, on_delete=models.SET_DEFAULT, default=None)

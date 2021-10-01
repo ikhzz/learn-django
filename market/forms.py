@@ -7,3 +7,6 @@ class CreateProductForm(ModelForm):
   class Meta:
     model = Product
     fields = ['name', 'price', 'stock']
+
+class CreateTransactionForm(ModelForm):
+  pass

@@ -7,12 +7,15 @@ from accounts.models import Accounts
 def checkSuplier(param):
   return param.role == 'suplier'
 
+def checkCostumer(param):
+  return param.role == 'costumer'
+
 # Create your views here.
 def index(request):
   data = Product.objects.all()
   return render(request, 'market/index.html', {'data': data})
 
-@login_required(login_url='user/signin/')
+@login_required(login_url='/user/signin/')
 @user_passes_test(checkSuplier,login_url='home/')
 def createProduct(request):
 
@@ -29,3 +32,12 @@ def createProduct(request):
     form = CreateProductForm()
 
   return render(request, 'market/createProduct.html', {'form': form})
+
+@login_required(login_url='/user/signin/')
+@user_passes_test(checkCostumer,login_url='/home/')
+def buy(request, id):
+  get = Product.objects.get(id=id)
+  if request.user.pk == get.suplier.pk:
+    return redirect('market:index')
+  
+  return render(request, 'market/transaction.html',{'data': get})

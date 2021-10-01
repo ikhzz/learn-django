@@ -5,11 +5,14 @@
   <h1>Beranda</h1>
   {% for entry in data %}
   <li>
-    <img src="{% static "img/download.jpeg" %}" alt="" srcset="">
     <h3>{{ entry.name }}</h3>
+    <img src="{% static "img/download.jpeg" %}" alt="" srcset="">
     <p>Stock: {{ entry.stock }}</p>
     <p>Price: {{ entry.price }}</p>
-    <button>buy</button>
+    {% if request.user == None or request.user.pk != entry.suplier.pk %}
+    <a href="{% url "market:buy" entry.pk %}"><button>buy</button></a>
+
+    {% endif %}
   </li>
   {% endfor %}
 </ul>
