@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="form">
+  <form action="" method="POST" >
+    <h1>Edit Product Page</h1>
+    {% csrf_token %}
+    <div class="inputForm">
+      <p>
+        <label for="id_name">Name:</label> 
+        <input type="text" name="name" maxlength="50" required="" id="id_name" value="{{get.name}}">
+      </p>
+      <p>
+        <label for="id_price">Price:</label> 
+        <input type="number" name="price" min="0" required="" id="id_price" value="{{get.price}}">
+      </p>
+      <p>
+        <label for="id_stock">Stock:</label> 
+        <input type="number" name="stock" min="0" required="" id="id_stock" value="{{get.stock}}">
+      </p>
+    </div>
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+{% endblock %}

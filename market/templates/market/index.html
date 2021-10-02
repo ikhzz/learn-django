@@ -11,7 +11,8 @@
     <p>Price: {{ entry.price }}</p>
     {% if request.user == None or request.user.pk != entry.suplier.pk %}
     <a href="{% url "market:buy" entry.pk %}"><button>buy</button></a>
-
+    {% else %}
+    <a href="{% url "market:edit" entry.pk %}"><button>add stock</button></a>
     {% endif %}
   </li>
   {% endfor %}

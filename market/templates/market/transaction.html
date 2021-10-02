@@ -5,11 +5,42 @@
 <div class="form">
   <form action="" method="POST" >
     <h1>Transaction Page</h1>
+    <span class="errMsg"></span>
     {% csrf_token %}
+    <h3>Nama: {{ data.name}}</h3>
+    <p>Price: <span class="transPrice">{{ data.price }}</span></p>
+    <p>Stock: <span class="transStock">{{ data.stock }}</span></p>
     <div class="inputForm">
       {{ form.as_p }}
+      <p>
+        <label for="total">Total:</label>
+        <input id="transTotal" name="total" type="number" readonly>
+      </p>
+      <input type="hidden" name="productId" value="{{ data.pk }}">
     </div>
-    <input type="submit" value="Submit">
+    <input id="submitTrans" type="submit" value="Submit">
+    <script type="text/javascript">
+      const value = document.getElementById("id_amount"),
+        total = document.getElementById("transTotal"),
+        transPrice = document.getElementsByClassName('transPrice')[0],
+        transStock = document.getElementsByClassName('transStock')[0],
+        submit = document.getElementById('submitTrans'),
+        errMsg = document.getElementsByClassName('errMsg')[0]
+
+      value.addEventListener('keyup', ()=> {
+        total.setAttribute('value', value.value * transPrice.innerHTML)
+        console.log(value.value > parseInt(transStock.innerHTML))
+        console.log(transStock.innerHTML)
+        if(value.value > parseInt(transStock.innerHTML)){
+          console.log('lalala')
+          submit.disabled = true
+          errMsg.innerHTML = "Product stock is not enough"
+        } else {
+          submit.disabled = false
+          errMsg.innerHTML = ""
+        }
+      })
+    </script>
   </form>
 </div>
 

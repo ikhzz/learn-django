@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('home/', views.index, name="index"),
     path('create', views.createProduct, name="create"),
-    path('transaction/<int:id>/', views.buy, name='buy')
+    path('transaction/<int:id>/', views.buy, name='buy'),
+    path('addStock/<int:id>/', views.addStock, name='edit')
 ]
