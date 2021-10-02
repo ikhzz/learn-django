@@ -30,3 +30,9 @@ simple shopping web with django and custom user models
 - Youtube: https://www.youtube.com/watch?v=n-FTlQ7Djqc&list=PL4cUxeGkcC9ib4HsrXEYpQnTOTZE1x0uc
 - Udemy: https://www.udemy.com/course/python-and-django-full-stack-web-developer-bootcamp/learn/lecture/6616106?start=570
 
+### How to use
+
+```
+- setup all tools
+- run: python3 manage.py runserver
+```
