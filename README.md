@@ -24,6 +24,7 @@ simple shopping web with django and custom user models
 - DB_PASSWORD=
 - DB_HOST=
 - DB_PORT=
+- SECRET_KEY=
 
 ### guide
 
